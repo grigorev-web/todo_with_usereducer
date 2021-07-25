@@ -14,6 +14,11 @@ export default function reducer(state, action) {
         todos: newToDo,
         field: ""
       };
+    case "DELETE_ITEM":
+      return {
+        ...state,
+        todos: state.todos.filter((elem, i) => i !== action.index)
+      };
     default:
       throw new Error();
   }

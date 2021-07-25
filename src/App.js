@@ -6,9 +6,7 @@ import { initialState } from "./components/initialState";
 export default function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  let todos = state.todos.length
-    ? state.todos.map((value, index) => <li key={index}>{value}</li>)
-    : "no records";
+  //let todos =
   return (
     <div className="App container">
       <h1>Hello CodeSandbox</h1>
@@ -28,7 +26,19 @@ export default function App() {
       >
         Load
       </div>
-      <p>{todos}</p>
+      <p>
+        {state.todos.length
+          ? state.todos.map((value, index) => (
+              <li
+                key={index}
+                id={index}
+                onClick={() => dispatch({ type: "DELETE_ITEM", index: index })}
+              >
+                {value}
+              </li>
+            ))
+          : "no records"}
+      </p>
       <table className="table table-bordered m-3">
         <thead>
           <tr>
